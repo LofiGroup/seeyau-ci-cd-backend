@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  runner:
+    build: ./github_runner
+    environment:
+      RUNNER_ALLOW_RUNASROOT: "1"
+#  backend:
+#    build: ./backend_api
+#    volumes:
+#      - ./backend:/usr/src/app
+#      - ./utility:/usr/src/app/utility
+#      - static:/static
+#      - certs:/etc/certs
+#    environment:
+#      DEBUG: ${DEBUG}
+#      SECRET_KEY: ${SECRET_KEY}
+#      COMPOSE_DOMAIN_NAME: "backend"
+#      WAIT_FOR_IT_TIME: ${WAIT_FOR_IT_TIME}
+#      REDIS_HOST: "redis"
+#      DB_HOST: "db"
+#      KEYS_FOLDER: /etc/certs/${DOMAIN_NAME}
+#      DOMAIN_NAME: "192.168.1.105"
+#  nginx:
+#    build: ./nginx
+#    entrypoint: ./dev-entrypoint.sh
+#    volumes:
+#      - static:/static
+#      - certs:/etc/certs
+#      - ./utility:/utility
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    depends_on:
+#      - backend
+#    environment:
+#      DOMAIN_NAME: ${DOMAIN_NAME}
+#      KEYS_FOLDER: /etc/certs/${DOMAIN_NAME}
+#      WAIT_FOR_IT_TIME: ${WAIT_FOR_IT_TIME}
+#      BACKEND_ADDRESS: "backend:8000"
+
+
+volumes:
+  db:
+  static:
+  certs:
