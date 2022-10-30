@@ -4,5 +4,8 @@ apt-get update
 apt-get install -y curl
 apt-get install -y unzip
 
-sh -c ./install-android.sh
-sh -c ./setup-github-runner.sh
+chmod +x ./install-android.sh
+./install-android.sh
+
+chmod +x ./setup-github-runner.sh
+./setup-github-runner.sh
