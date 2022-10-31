@@ -13,7 +13,7 @@ then
   curl -o commandlinetools.zip -L https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
   unzip ./commandlinetools.zip
   mv -v cmdline-tools/* "$CMD_TOOLS_ROOT"
-  rm cmdline-tools
+  rm -r cmdline-tools
   rm commandlinetools.zip
 
   sdkmanager --install "platforms;android-33"
