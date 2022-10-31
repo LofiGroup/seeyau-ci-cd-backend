@@ -6,7 +6,7 @@ then
 
   echo "export ANDROID_HOME=/usr/local/android-sdk" >> ~/.bashrc
 
-  export CMD_TOOLS_ROOT=ANDROID_HOME:$ANDROID_HOME/cmdline-tools/latest
+  export CMD_TOOLS_ROOT=$ANDROID_HOME:$ANDROID_HOME/cmdline-tools/latest
   echo "export PATH=$PATH:$CMD_TOOLS_ROOT/bin" >> ~/.bashrc
 
   mkdir -p "$CMD_TOOLS_ROOT"
