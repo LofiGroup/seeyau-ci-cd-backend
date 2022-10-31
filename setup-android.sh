@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
+export ANDROID_HOME=/usr/local/android-sdk
+export CMD_TOOLS_ROOT=$ANDROID_HOME/cmdline-tools/latest
+
 if [ ! -d "${ANDROID_HOME}" ]
 then
   apt-get install -y openjdk-8-jdk
-
-  export ANDROID_HOME=/usr/local/android-sdk
-  export CMD_TOOLS_ROOT=$ANDROID_HOME/cmdline-tools/latest
 
   echo "export ANDROID_HOME=$ANDROID_HOME" >> ~/.bashrc
   echo "export PATH=$PATH:$CMD_TOOLS_ROOT/bin" >> ~/.bashrc
