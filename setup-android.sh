@@ -1,9 +1,19 @@
 #!/usr/bin/env sh
 
-export ANDROID_HOME=/usr/local/android-sdk
-export CMD_TOOLS_ROOT=$ANDROID_HOME/cmdline-tools/latest
+FORCE_UPDATE=false
+while getopts ":f" option; do
+  case $option in
+    f)
+      FORCE_UPDATE=true;;
+    \?)
+      echo "Invalid option";;
+  esac
+done
 
-if [ ! -d "${ANDROID_HOME}" ]
+ANDROID_HOME=/usr/local/android-sdk
+CMD_TOOLS_ROOT=$ANDROID_HOME/cmdline-tools/latest
+
+if [ ! -d "${ANDROID_HOME}" ] || [ $FORCE_UPDATE ]
 then
   apt-get install -y openjdk-8-jdk
 
