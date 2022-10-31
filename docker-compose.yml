@@ -2,9 +2,11 @@ version: '3.9'
 
 services:
   runner:
-    build: ./github_runner
+    build: ./actions-runner
     environment:
       RUNNER_ALLOW_RUNASROOT: "1"
+      GITHUB_REPO_URL: $GITHUB_REPO_URL
+      $GITHUB_RUNNER_TOKEN: $GITHUB_RUNNER_TOKEN
 #  backend:
 #    build: ./backend_api
 #    volumes:
