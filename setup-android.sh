@@ -27,7 +27,7 @@ then
   rm -r cmdline-tools
   rm commandlinetools.zip
 
-  cd $CMD_TOOLS_ROOT/bin || exit 1
+  . ~/.bashrc
   sdkmanager --install "platforms;android-33"
   sdkmanager --install "build-tools;30.0.2"
 
