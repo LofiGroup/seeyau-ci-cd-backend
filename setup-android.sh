@@ -10,15 +10,17 @@ while getopts ":f" option; do
   esac
 done
 
-ANDROID_HOME=/usr/local/android-sdk
+export ANDROID_HOME=/usr/local/android-sdk
 CMD_TOOLS_ROOT=$ANDROID_HOME/cmdline-tools/latest
+
+export PATH=$PATH:$CMD_TOOLS_ROOT/bin
 
 if [ ! -d "${ANDROID_HOME}" ] || [ $FORCE_UPDATE ]
 then
   apt-get install -y openjdk-8-jdk
 
   echo "export ANDROID_HOME=$ANDROID_HOME" >> ~/.bashrc
-  echo "export PATH=$PATH:$CMD_TOOLS_ROOT/bin" >> ~/.bashrc
+  echo "export PATH=$PATH" >> ~/.bashrc
 
   mkdir -p "$CMD_TOOLS_ROOT"
   curl -o commandlinetools.zip -L https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
@@ -27,7 +29,6 @@ then
   rm -r cmdline-tools
   rm commandlinetools.zip
 
-  . ~/.bashrc
   sdkmanager --install "platforms;android-33"
   sdkmanager --install "build-tools;30.0.2"
 
