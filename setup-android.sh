@@ -4,9 +4,10 @@ if [ ! -d "${ANDROID_HOME}" ]
 then
   apt-get install -y openjdk-8-jdk
 
-  echo "export ANDROID_HOME=/usr/local/android-sdk" >> ~/.bashrc
+  export ANDROID_HOME=/usr/local/android-sdk
+  export CMD_TOOLS_ROOT=$ANDROID_HOME/cmdline-tools/latest
 
-  export CMD_TOOLS_ROOT=$ANDROID_HOME:$ANDROID_HOME/cmdline-tools/latest
+  echo "export ANDROID_HOME=$ANDROID_HOME" >> ~/.bashrc
   echo "export PATH=$PATH:$CMD_TOOLS_ROOT/bin" >> ~/.bashrc
 
   mkdir -p "$CMD_TOOLS_ROOT"
@@ -16,6 +17,7 @@ then
   rm -r cmdline-tools
   rm commandlinetools.zip
 
+  cd $CMD_TOOLS_ROOT/bin || exit 1
   sdkmanager --install "platforms;android-33"
   sdkmanager --install "build-tools;30.0.2"
 
