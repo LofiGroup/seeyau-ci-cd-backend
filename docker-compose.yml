@@ -3,42 +3,40 @@ version: '3.9'
 services:
   jenkins-android:
     build: ./jenkins-android
-#  backend:
-#    build: ./backend_api
-#    volumes:
-#      - ./backend:/usr/src/app
-#      - ./utility:/usr/src/app/utility
-#      - static:/static
-#      - certs:/etc/certs
-#    environment:
-#      DEBUG: ${DEBUG}
-#      SECRET_KEY: ${SECRET_KEY}
-#      COMPOSE_DOMAIN_NAME: "backend"
-#      WAIT_FOR_IT_TIME: ${WAIT_FOR_IT_TIME}
-#      REDIS_HOST: "redis"
-#      DB_HOST: "db"
-#      KEYS_FOLDER: /etc/certs/${DOMAIN_NAME}
-#      DOMAIN_NAME: "192.168.1.105"
-#  nginx:
-#    build: ./nginx
-#    entrypoint: ./dev-entrypoint.sh
-#    volumes:
-#      - static:/static
-#      - certs:/etc/certs
-#      - ./utility:/utility
-#    ports:
-#      - "80:80"
-#      - "443:443"
-#    depends_on:
-#      - backend
-#    environment:
-#      DOMAIN_NAME: ${DOMAIN_NAME}
-#      KEYS_FOLDER: /etc/certs/${DOMAIN_NAME}
-#      WAIT_FOR_IT_TIME: ${WAIT_FOR_IT_TIME}
-#      BACKEND_ADDRESS: "backend:8000"
+  nginx:
+    build: ./nginx
+    volumes:
+      - static:/static
+      - certbot-conf:/etc/letsencrypt
+      - certbot-www:/var/www/certbot
+      - ./utility:/utility
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - jenkins-android
+    environment:
+      JENKINS_ADDRESS: "jenkins-android"
+      DOMAIN_NAME: ${DOMAIN_NAME}
+      KEYS_FOLDER: /etc/letsencrypt/live/${DOMAIN_NAME}
+      WAIT_FOR_IT_TIME: ${WAIT_FOR_IT_TIME}
+      BACKEND_ADDRESS: "backend:8000"
+  certbot:
+    build: ./certbot
+    volumes:
+      - certbot-conf:/etc/letsencrypt
+      - certbot-www:/var/www/certbot
+    environment:
+      NGINX_ADDRESS: "nginx"
+      CERTBOT_EMAIL: ${CERTBOT_EMAIL}
+      KEYS_FOLDER: /etc/letsencrypt/live/${DOMAIN_NAME}
+      DOMAIN_NAME: ${DOMAIN_NAME}
+      WAIT_FOR_IT_TIME: ${WAIT_FOR_IT_TIME}
+    depends_on:
+      - nginx
 
 
 volumes:
-  db:
   static:
-  certs:
+  certbot-conf:
+  certbot-www:
