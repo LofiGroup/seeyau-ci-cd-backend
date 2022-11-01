@@ -11,9 +11,9 @@ ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 RUN mkdir -p "$ANDROID_HOME"/cmdline-tools/latest
 RUN curl -o android-cmdline.zip https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
 RUN unzip android-cmdline.zip
-RUN mv -v android-cmdline/* "$ANDROID_HOME"/cmdline-tools/latest
+RUN mv -v cmdline-tools/* "$ANDROID_HOME"/cmdline-tools/latest
 RUN rm android-cmdline.zip
-RUN rm -r android-cmdline
+RUN rm -r cmdline-tools
 
 USER jenkins
 
