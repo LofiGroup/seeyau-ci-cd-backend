@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sh wait_for_it.sh "${JENKINS_ADDRESS}" -t "${WAIT_FOR_IT_TIME}" -- echo "Jenkins is ready"
+sh /utility/wait_for_it.sh "${JENKINS_ADDRESS}" -t "${WAIT_FOR_IT_TIME}" -- echo "Jenkins is ready"
 
 # If no certificates are obtained, create dummy ones to start the nginx
 if [ ! -f "${KEYS_FOLDER}/privkey.pem" ]
