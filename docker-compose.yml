@@ -23,7 +23,7 @@ services:
     volumes:
       - certbot-conf:/etc/letsencrypt
       - certbot-www:/var/www/certbot
-      - ./utility:/utility
+      - ./utility:/~/utility
     environment:
       NGINX_ADDRESS: nginx:80
       CERTBOT_EMAIL: ${CERTBOT_EMAIL}
