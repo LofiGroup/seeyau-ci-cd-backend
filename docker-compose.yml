@@ -24,6 +24,8 @@ services:
       - certbot-conf:/etc/letsencrypt
       - certbot-www:/var/www/certbot
       - ./utility:/utility
+    depends_on:
+      - nginx
     environment:
       NGINX_ADDRESS: "nginx:80"
       CERTBOT_EMAIL: ${CERTBOT_EMAIL}
