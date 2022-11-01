@@ -20,6 +20,8 @@ RUN chmod 777 $ANDROID_HOME -R
 RUN yes | sdkmanager --licenses
 RUN yes | sdkmanager "platform-tools" "platforms;android-33"
 
+RUN mkdir -p /var/log/nginx/
+
 USER jenkins
 
 
