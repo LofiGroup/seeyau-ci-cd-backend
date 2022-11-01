@@ -1,8 +1,8 @@
 version: '3.9'
 
 services:
-#  jenkins-android:
-#    build: ./jenkins-android
+  jenkins-android:
+    build: ./jenkins-android
   nginx:
     build: ./nginx
     volumes:
