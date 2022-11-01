@@ -1,5 +1,6 @@
 #!/bin/bash
 
+chmod +x /utility/wait_for_it.sh
 bash /utility/wait_for_it.sh "${NGINX_ADDRESS}" -t "${WAIT_FOR_IT_TIME}" -- echo "Nginx is ready"
 
 sleep infinity
