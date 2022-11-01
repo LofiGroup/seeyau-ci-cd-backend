@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-sh wait_for_it.sh "${NGINX_ADDRESS}" -t "${WAIT_FOR_IT_TIME}" -- echo \"Nginx is ready\"
+sh wait_for_it.sh "${NGINX_ADDRESS}" -t "${WAIT_FOR_IT_TIME}" -- echo "Nginx is ready"
 sh wait_for_it.sh
 
 sleep infinity

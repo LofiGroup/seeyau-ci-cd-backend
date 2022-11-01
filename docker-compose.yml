@@ -14,7 +14,7 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      JENKINS_ADDRESS: jenkins-android:8080
+      JENKINS_ADDRESS: "jenkins-android:8080"
       DOMAIN_NAME: ${DOMAIN_NAME}
       KEYS_FOLDER: /etc/letsencrypt/live/${DOMAIN_NAME}
       WAIT_FOR_IT_TIME: ${WAIT_FOR_IT_TIME}
@@ -25,13 +25,12 @@ services:
       - certbot-www:/var/www/certbot
       - ./utility:/~/utility
     environment:
-      NGINX_ADDRESS: nginx:80
+      NGINX_ADDRESS: "nginx:80"
       CERTBOT_EMAIL: ${CERTBOT_EMAIL}
       KEYS_FOLDER: /etc/letsencrypt/live/${DOMAIN_NAME}
       DOMAIN_NAME: ${DOMAIN_NAME}
       WAIT_FOR_IT_TIME: ${WAIT_FOR_IT_TIME}
-    depends_on:
-      - nginx
+
 
 
 volumes:
