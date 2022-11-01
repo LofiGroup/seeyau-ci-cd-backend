@@ -3,6 +3,8 @@
 chmod +x /utility/wait_for_it.sh
 sh -c "/utility/wait_for_it.sh -t \"${WAIT_FOR_IT_TIME}\" \"${NGINX_ADDRESS}\" -- echo \"Nginx is ready\""
 
+sleep infinity
+
 #if [ ! -f "${KEYS_FOLDER}"/README ]
 #then rm -r "${KEYS_FOLDER}" && echo "Deleted dummy certificate"
 #fi
