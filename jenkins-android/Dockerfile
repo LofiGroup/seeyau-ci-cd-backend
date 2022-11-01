@@ -15,6 +15,11 @@ RUN mv -v cmdline-tools/* "$ANDROID_HOME"/cmdline-tools/latest
 RUN rm android-cmdline.zip
 RUN rm -r cmdline-tools
 
+ENV PATH=$PATH:$ANDROID_HOME/platform-tools
+RUN sudo chmod 777 $ANDROID_HOME -R
+RUN yes | sdkmanager --licenses
+RUN yes | sdkmanager "platform-tools" "platforms;android-33"
+
 USER jenkins
 
 
