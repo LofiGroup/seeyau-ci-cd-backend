@@ -1,6 +1,6 @@
 FROM jenkins/jenkins:lts-jdk11
 
-RUN USER root
+USER root
 RUN apt-get update
 RUN apt-get install -y unzip
 RUN apt-get install -y curl
@@ -16,6 +16,6 @@ RUN mv -v android-cmdline/* "$ANDROID_HOME"/cmdline-tools/latest
 RUN rm android-cmdline.zip
 RUN rm -r android-cmdline
 
-RUN USER jenkins
+USER jenkins
 
 
