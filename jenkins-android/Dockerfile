@@ -4,7 +4,6 @@ USER root
 RUN apt-get update
 RUN apt-get install -y unzip
 RUN apt-get install -y curl
-RUN apt-get install openjdk-11-jdk
 
 ENV ANDROID_HOME=/usr/local/android-sdk
 ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
