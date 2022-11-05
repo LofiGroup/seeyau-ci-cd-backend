@@ -1,4 +1,4 @@
-from backend.utils.random import generate_random_string
+from backend.utils.random_utils import generate_random_string
 
 print("Enter domain name:")
 domain_name = input()
