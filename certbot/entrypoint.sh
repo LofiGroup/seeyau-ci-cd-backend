@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-if [ "${IS_DEBUG_VERSION}" ]; then
+if ${IS_DEBUG_VERSION}; then
   echo "It's a debug version, there is no need for certbot. Exiting..."
   exit 0
 fi
