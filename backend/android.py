@@ -16,6 +16,6 @@ android_router = APIRouter(
 @android_router.post("/upload-apk")
 async def upload_apk(file: UploadFile, access_token: str, version: str):
     verify_access_token(access_token)
-    filename = f"plum{version}_generate_random_string(30)"
+    filename = f"plum{version}_{generate_random_string(30, False)}"
     save_file(filename, file)
     return {"url": f"{base_url}/static/{filename}.apk"}
