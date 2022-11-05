@@ -1,12 +1,16 @@
 version: '3.9'
 
 services:
-  jenkins-android:
-    build: ./jenkins-android
+  backend:
+    build: ./backend
+
     volumes:
-      - jenkins-home:/var/lib/jenkins/
-      - jenkins-root:/var/run/jenkins/war/
-      - jenkins-log:/var/log/nginx/
+      - static:/usr/src/app/static
+
+    environment:
+      BASE_URL: ${DOMAIN_NAME}
+      ADMIN_ACCESS_TOKEN: ${ADMIN_ACCESS_TOKEN}
+      IS_DEBUG_VERSION: ${IS_DEBUG_VERSION}
   nginx:
     build: ./nginx
     volumes:
@@ -14,14 +18,11 @@ services:
       - certbot-conf:/etc/letsencrypt
       - certbot-www:/var/www/certbot
       - ./utility:/utility
-      - jenkins-home:/var/lib/jenkins/
-      - jenkins-root:/var/run/jenkins/war/
-      - jenkins-log:/var/log/nginx/
     ports:
       - "80:80"
       - "443:443"
     environment:
-      JENKINS_ADDRESS: "jenkins-android:8080"
+      BACKEND_ADDRESS: "backend:80"
       DOMAIN_NAME: ${DOMAIN_NAME}
       KEYS_FOLDER: /etc/letsencrypt/live/${DOMAIN_NAME}
       WAIT_FOR_IT_TIME: ${WAIT_FOR_IT_TIME}
@@ -39,6 +40,7 @@ services:
       KEYS_FOLDER: /etc/letsencrypt/live/${DOMAIN_NAME}
       DOMAIN_NAME: ${DOMAIN_NAME}
       WAIT_FOR_IT_TIME: ${WAIT_FOR_IT_TIME}
+      IS_DEBUG_VERSION: ${IS_DEBUG_VERSION}
 
 
 
