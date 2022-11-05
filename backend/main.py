@@ -6,9 +6,9 @@ import uvicorn
 
 from android import android_router
 
-IS_DEBUG_VERSION = os.getenv("IS_DEBUG_VERSION", False)
+IS_DEBUG_VERSION = os.getenv("IS_DEBUG_VERSION", "false")
 
-if IS_DEBUG_VERSION:
+if IS_DEBUG_VERSION == "true":
     app = FastAPI()
 else:
     app = FastAPI(docs_url=None, redoc_url=None)
