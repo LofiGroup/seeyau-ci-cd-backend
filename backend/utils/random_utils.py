@@ -17,5 +17,23 @@ if __name__ == "__main__":
     print("Enter password size:")
     size = int(input())
 
-    password = generate_random_string(size)
+    print(
+"""
+Choose character set:
+1) All characters
+2) Exclude special characters(default)
+3) Letters and digits
+"""
+    )
+
+    option = input()
+    match option:
+        case "1":
+            chars = all_characters
+        case "3":
+            chars = letters_and_digits
+        case _:
+            chars = excluding_special_characters
+
+    password = generate_random_string(size, chars)
     print(f"Generated:\n{password}")
