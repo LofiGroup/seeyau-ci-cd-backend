@@ -1,6 +1,6 @@
 import os
 
-from fastapi import APIRouter, Depends, UploadFile
+from fastapi import APIRouter, Depends, UploadFile, File
 
 from utils.file import save_file
 from utils.random_utils import generate_random_string
@@ -14,7 +14,7 @@ android_router = APIRouter(
 
 
 @android_router.post("/upload-apk")
-async def upload_apk(file: UploadFile, access_token: str, version: str):
+async def upload_apk(access_token: str, version: str, file: UploadFile = File(media_type="application/octet-stream")):
     verify_access_token(access_token)
     filename = f"plum{version}_{generate_random_string(30, False)}"
     save_file(filename, file)
