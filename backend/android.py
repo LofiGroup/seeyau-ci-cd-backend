@@ -29,5 +29,6 @@ async def get_apk(access_token: str):
     file_name = decrypt_token(access_token)
     if file_name is None:
         raise credentials_exception
+    print(f"File name: {file_name}")
 
     return f"static/{file_name}"
