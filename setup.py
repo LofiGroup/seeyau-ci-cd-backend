@@ -6,7 +6,7 @@ domain_name = input()
 print("Enter your email:")
 email = input()
 
-admin_access_token = generate_random_string(40)
+admin_access_token = generate_random_string(60, False)
 
 with open(".env", "w") as env:
     env.writelines([
